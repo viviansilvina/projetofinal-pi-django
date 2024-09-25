@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<style>
+    header {
+        background-color: #FFFBFF;
+        color: #1F4864;
+        padding: 10px;
+    }
+
+    .navbar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .navbar-brand {
+        margin-right: 100px;
+    }
+
+    .navbar-collapse {
+        flex-grow: 0;
+    }
+
+
+    ul {
+        display: flex;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    ul li {
+        margin-left: 10px;
+    }
+
+    .nav-link {
+        color: #1F4864 !important;
+        text-decoration: none;
+    }
+
+    img {
+        width: 15vh;
+    }
+
+    .navbar .navbar-collapse {
+        justify-content: flex-start;
+    }
+
+    .navbar-toggler {
+        margin-left: auto;
+    }
+
+    .footer {
+        position: fixed;
+        bottom: 0;
+        height: 15vh;
+        width: 100%;
+        background-color: #FFFBFF;
+        color: #1F4864;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+</style>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            {% load static %}
+            <a class="navbar-brand" href="{% url 'index'%}">
+                <img src="{% static '/image/logo.png' %}" alt="Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon" style="background-color: #1F4864; border: none;"></span>
+            </button>
+
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'index'%}">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'escala'%}">Escala Semanal</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'novo_templo' %}">Construção do Novo Templo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'historia' %}">História</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'obra_missionaria' %}">Obra Missionária</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contate_nos' %}">Contate-nos</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <p>© Copyright - 2024 | Assembleia de Deus em Rodolfo Fernandes/RN. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>
