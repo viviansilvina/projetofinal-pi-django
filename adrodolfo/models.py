@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
 class Contatos(models.Model):
@@ -10,51 +11,25 @@ class Contatos(models.Model):
     def __str__(self):
         return self.nome
 
-class Segunda(models.Model):
-    programacao = models.TextField()
-    horario = models.TimeField()
-    
-    def __str__(self):
-        return self.programacao
+class Escala(models.Model):
+    DIAS_CHOICES = [
+        ("Segunda-feira", "Segunda-feira"),
+        ("Terça-feira", "Terça-feira"),
+        ("Quarta-feira", "Quarta-feira"),
+        ("Quinta-feira", "Quinta-feira"),
+        ("Sexta-feira", "Sexta-feira"),
+        ("Sábado", "Sábado"),
+        ("Domingo", "Domingo"),
+    ]
 
-class Terca(models.Model):
+    dia = models.CharField(max_length=15, choices=DIAS_CHOICES)
     programacao = models.TextField()
     horario = models.TimeField()
-    
-    def __str__(self):
-        return self.programacao
+    congregacao = models.CharField(
+        max_length=20,
+        choices=[('Templo Sede', 'Templo Sede'), ('Sítio Espinheiro', 'Sítio Espinheiro')]
+    )
 
-class Quarta(models.Model):
-    programacao = models.TextField()
-    horario = models.TimeField()
-    
     def __str__(self):
-        return self.programacao
-
-class Quinta(models.Model):
-    programacao = models.TextField()
-    horario = models.TimeField()
-    
-    def __str__(self):
-        return self.programacao
-
-class Sexta(models.Model):  
-    programacao = models.TextField()
-    horario = models.TimeField()
-    
-    def __str__(self):
-        return self.programacao
-
-class Sabado(models.Model):
-    programacao = models.TextField()
-    horario = models.TimeField()
-    
-    def __str__(self):
-        return self.programacao
-
-class Domingo(models.Model):
-    programacao = models.TextField()
-    horario = models.TimeField()
-    
-    def __str__(self):
-        return self.programacao
+        return f"{self.programacao} - {self.dia}"
+# models.py
