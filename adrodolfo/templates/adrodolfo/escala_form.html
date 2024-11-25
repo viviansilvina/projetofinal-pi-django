@@ -2,13 +2,18 @@
 {% block title %}Adicionar Escala{% endblock %}
 
 {% block content %}
+
 <div class="container mt-4">
-    <h1 class="text-center">Adicionar Nova Escala</h1>
+    <h1 class="text-center">Programação</h1>
+
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="btn btn-primary">Salvar</button>
     </form>
+
     <a href="{% url 'escala_list' %}" class="btn btn-secondary mt-3">Voltar</a>
+    
 </div>
+
 {% endblock %}

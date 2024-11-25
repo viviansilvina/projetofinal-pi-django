@@ -1,2 +1,64 @@
 {% extends "base.html" %}
-{% block title %}adrodolfo{% endblock %}
+{% load static %}
+
+<head>
+    {% block title %}adrodolfo{% endblock %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+{% block content %}
+<!-- Localização -->
+<section class="localizacao">
+    <div class="content">
+        <h2>Nossa Localização</h2>
+        <p>RUA JOAQUIM DANTAS, 296<br>RODOLFO FERNANDES/RN,<br>CEP 59830-000</p>
+    </div>
+</section>
+
+<!-- Versículo do Dia -->
+<section class="versiculo-dia">
+    <h3>Versículo do Dia</h3>
+    <p>"Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito, para que todo aquele que nele crê não pereça, mas tenha a vida eterna."</p>
+    <p><strong>João 3:16</strong></p>
+</section>
+
+<!-- Obra Missionária -->
+<section class="obra-missionaria">
+    <h3>Conheça a nossa obra missionária</h3>
+    <p>"E disse-lhes: Ide por todo o mundo, pregai o evangelho a toda criatura." (Marcos 16:15)</p>
+    <img src="{% static 'image/missoespb.png' %}" alt="Logo da Missão">
+</section>
+
+<!-- Departamentos -->
+<section class="departamentos">
+    <h3>Departamentos da Igreja</h3>
+    <div class="departamentos-container">
+        <div>
+            <img src="{% static 'image/criancas.jpg' %}" alt="Departamento Infantil">
+            <p>Departamento Infantil</p>
+        </div>
+        <div>
+            <img src="{% static 'image/familia.jpg' %}" alt="Departamento de Família">
+        </div>
+        <div>
+            <img src="{% static 'image/defad.jpg' %}" alt="Departamento Feminino">
+        </div>
+        <div>
+            <img src="{% static 'image/dejad.jpg' %}" alt="Departamento de Jovens">
+        </div>
+        <div>
+            <img src="{% static 'image/missao.jpg' %}" alt="Departamento de Missões">
+        </div>
+    </div>
+</section>
+
+
+<!-- Contribuição -->
+<section class="contribuicao">
+    <h3>Quer ofertar? Contribua com a obra!</h3>
+    <p>BANCO XXX</p>
+    <p>Conta: XXXX CVV XXXX</p>
+    <p>Titular: Fulano da Silva Ferreira</p>
+    <img src="{% static 'image/qrcode.png' %}" alt="QR Code">
+</section>
+{% endblock %}

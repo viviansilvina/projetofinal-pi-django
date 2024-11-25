@@ -1,0 +1,140 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.localizacao {
+    background-image: url('../image/biblia.png');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 50px 20px;
+    text-align: left;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+}
+
+.localizacao h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.localizacao p {
+    margin: 0;
+    font-size: 1.2em;
+    line-height: 1.6;
+}
+
+.localizacao .content {
+    max-width: 600px;
+    margin-left: 10%;
+    padding: 20px;
+    border-left: 1px solid #ccc;
+}
+
+.versiculo-dia {
+    text-align: center;
+    padding: 8%;
+}
+
+.versiculo-dia p {
+    font-style: italic;
+    font-size: 1.2em;
+}
+
+.obra-missionaria {
+    background-color: #00334e;
+    color: white;
+    padding: 8%;
+    text-align: center;
+    min-height: 400px;
+}
+
+.obra-missionaria img {
+    width: 150px;
+    margin-top: 20px;
+}
+
+.departamentos {
+    padding: 30px;
+    text-align: center;
+}
+
+.departamentos-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 20px;
+    padding: 10px 0;
+    justify-content: start;
+    scroll-snap-type: x mandatory;
+}
+
+.departamentos-container > div {
+    padding: 3%;
+    scroll-snap-align: center;
+    flex-shrink: 0;
+    text-align: center;
+}
+
+.departamentos img {
+    width: auto;
+    min-height: 300px;
+    margin-bottom: 10px;
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
+.departamentos p {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.departamentos-container::-webkit-scrollbar {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .departamentos-container {
+        gap: 15px;
+    }
+
+    .departamentos img {
+        width: 120px;
+    }
+}
+
+.contribuicao {
+    background-image: url('../image/contribuicao.png');
+    background-size: cover;
+    color: white;
+    padding: 50px;
+    text-align: center;
+}
+
+.contribuicao img {
+    width: auto;
+    margin-top: 20px;
+    min-height: 300px;
+}
+
+@media (max-width: 768px) {
+    .localizacao {
+        text-align: center;
+        padding: 30px 10px;
+    }
+
+    .localizacao .content {
+        margin-left: 0;
+    }
+
+    .departamentos-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+}

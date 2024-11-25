@@ -5,8 +5,8 @@
 <div class="container">
     <h1 class="text-center my-4">Escala Semanal</h1>
 
-    <!-- Botão para Adicionar Escala -->
     {% if user.is_staff %}
+    <!-- Botão para Adicionar Escala -->
     <div class="text-center mb-4">
         <a href="{% url 'escala_create' %}" class="btn btn-primary">Adicionar Escala</a>
     </div>
