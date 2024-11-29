@@ -1,10 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
-<head>
-    {% block title %}adrodolfo{% endblock %}
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-</head>
+{% block title %}adrodolfo{% endblock %}
 
 {% block content %}
 <!-- Localização -->
@@ -24,10 +21,13 @@
 
 <!-- Obra Missionária -->
 <section class="obra-missionaria">
-    <h3>Conheça a nossa obra missionária</h3>
-    <p>"E disse-lhes: Ide por todo o mundo, pregai o evangelho a toda criatura." (Marcos 16:15)</p>
+    <div>
+        <h3>Conheça a nossa obra missionária</h3>
+        <p>"E disse-lhes: Ide por todo o mundo, pregai o evangelho a toda criatura." (Marcos 16:15)</p>
+    </div>
     <img src="{% static 'image/missoespb.png' %}" alt="Logo da Missão">
 </section>
+
 
 <!-- Departamentos -->
 <section class="departamentos">
@@ -35,7 +35,6 @@
     <div class="departamentos-container">
         <div>
             <img src="{% static 'image/criancas.jpg' %}" alt="Departamento Infantil">
-            <p>Departamento Infantil</p>
         </div>
         <div>
             <img src="{% static 'image/familia.jpg' %}" alt="Departamento de Família">
@@ -55,10 +54,17 @@
 
 <!-- Contribuição -->
 <section class="contribuicao">
-    <h3>Quer ofertar? Contribua com a obra!</h3>
-    <p>BANCO XXX</p>
-    <p>Conta: XXXX CVV XXXX</p>
-    <p>Titular: Fulano da Silva Ferreira</p>
-    <img src="{% static 'image/qrcode.png' %}" alt="QR Code">
+    <div class="texto">
+        <h3>Quer ofertar? Contribua com a obra!</h3>
+        <p>BANCO XXX</p>
+        <p>Conta: XXXX CVV XXXX</p>
+        <p>Titular: Fulano da Silva Ferreira</p>
+    </div>
+    <div class="qrcode">
+        <p class="qrcode-titulo">Escaneie o QR Code</p>
+        <img src="{% static 'image/qrcode.png' %}" alt="QR Code">
+        <p class="qrcode-titular">Fulano da Silva Ferreira</p>
+    </div>
 </section>
+
 {% endblock %}
