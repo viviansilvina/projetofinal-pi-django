@@ -53,7 +53,7 @@ body {
     align-items: center;
     justify-content: space-between;
     background-color: #1F4864;
-    color: white; 
+    color: white;
     padding: 3% 15%;
     min-height: 400px;
 }
@@ -71,8 +71,9 @@ body {
 
 .obra-missionaria img {
     min-height: 150px;
-    width: auto; 
+    width: auto;
 }
+
 .departamentos {
     padding: 30px;
     text-align: center;
@@ -88,7 +89,7 @@ body {
     scroll-snap-type: x mandatory;
 }
 
-.departamentos-container > div {
+.departamentos-container>div {
     padding: 3%;
     scroll-snap-align: center;
     flex-shrink: 0;
@@ -128,13 +129,13 @@ body {
     justify-content: space-between;
     align-items: center;
     background-image: url('../image/contribuicao.png');
-    background-size: cover;    
+    background-size: cover;
     color: white;
     padding: 4% 15%;
     min-height: 500px;
 }
 
-.texto h3{
+.texto h3 {
     font-size: 2rem;
 }
 
@@ -154,7 +155,8 @@ body {
     margin: 10px 0;
 }
 
-.qrcode-titulo, .qrcode-titular {
+.qrcode-titulo,
+.qrcode-titular {
     margin: 5px 0;
     font-size: 1.2rem;
 }
@@ -174,4 +176,89 @@ body {
         flex-direction: column;
         gap: 20px;
     }
+}
+
+.contato-info {
+    background-color: #002f4f;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    padding: 7% 0;
+    text-align: center;
+}
+
+.contato-info .info {
+    max-width: 300px;
+    text-align: center;
+}
+
+.contato-info img {
+    min-height: 60px;
+    width: auto;
+    margin-bottom: 10px;
+}
+
+.formulario {
+    text-align: center;
+    padding: 30px;
+}
+
+.formulario h2 {
+    padding-top: 4%;
+    padding-bottom: 2%;
+    margin-bottom: 20px;
+    color: #1A415C;
+    font-family: "Jockey One";
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 28px;
+}
+
+.formulario form input,
+.formulario form textarea,
+.formulario form button {
+    display: block;
+    width: 100%;
+    max-width: 700px;
+    margin: 2% auto;
+    padding: 1%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.formulario form button {
+    background-color: #002f4f;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.formulario form button:hover {
+    background-color: #004d80;
+}
+
+
+.redes-sociais {
+    text-align: center;
+    padding: 20px;
+}
+
+.redes-sociais h2 {
+    color: #1F4864;
+    font-family: Inter;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.redes-sociais .icones img {
+    padding-top: 1%;
+    min-height: 100%;
+    width: auto;
+    margin: 0 1%;
 }

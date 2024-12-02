@@ -1,2 +1,48 @@
 {% extends "base.html" %}
 {% block title %}Contate-nos{% endblock %}
+{%load static%}
+
+{% block content %}
+ <!-- Seção de contato -->
+ <section class="contato-info">
+    <div class="info">
+        <img src="{% static 'image/email.png' %}" alt="Ícone de email">
+        <a href="mailto:viviansilvina23@gmail.com" style="text-decoration: none; color: white;">suporte@gmail.com</a>
+    </div>
+    <div class="info">
+        <img src="{% static 'image/localizacao.png' %}" alt="Ícone de localização">
+        <a href="https://abrir.link/CvZOc" style="text-decoration: none; color: white;">Rua Joaquim Dantas, 296, Rodolfo Fernandes/RN - CEP 59830-000</a>
+    </div>
+</section>
+
+<!-- Formulário de contato -->
+<section class="formulario">
+    <h2>Fale conosco</h2>
+
+    <!-- Exibir mensagem de sucesso -->
+    {% if mensagem_sucesso %}
+        <p style="color: green;">Mensagem enviada com sucesso! Obrigado por entrar em contato.</p>
+    {% endif %}
+
+    <!-- Formulário -->
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="nome" placeholder="Nome" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <textarea name="mensagem" placeholder="Escreva uma mensagem..." rows="4" required></textarea>
+        <button type="submit">ENVIAR</button>
+    </form>
+</section>
+
+
+
+
+<!-- Redes sociais -->
+<section class="redes-sociais">
+    <h2>Acesse nossas redes sociais</h2>
+    <div class="icones">
+        <img src="{% static 'image/insta.png' %}" alt="Instagram">
+        <img src="{% static 'image/face.png' %}" alt="Facebook">
+    </div>
+</section>
+{% endblock %}

@@ -1,15 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
-class Contatos(models.Model):
-    nome = models.CharField(max_length=100)
-    email = models.EmailField()
-    telefone = models.CharField(max_length=15)
-    mensagem = models.TextField()
-
-    def __str__(self):
-        return self.nome
 
 class Escala(models.Model):
     DIAS_CHOICES = [
@@ -32,4 +23,12 @@ class Escala(models.Model):
 
     def __str__(self):
         return f"{self.programacao} - {self.dia}"
-# models.py
+
+class MensagemContato(models.Model):
+    nome = models.CharField(max_length=100)
+    email = models.EmailField()
+    mensagem = models.TextField()
+    data_envio = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Mensagem de {self.nome} ({self.email})"

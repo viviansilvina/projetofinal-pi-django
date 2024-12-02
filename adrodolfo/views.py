@@ -1,14 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, user_passes_test
-from .models import Escala
-from .forms import EscalaForm
+from .models import Escala, MensagemContato
+from .forms import EscalaForm, ContatoForm
 
-# Create your views here.
 def index(request):
     return render(request, 'adrodolfo/index.html')
 
 def escala_list(request):
-    # Ordenando as escalas do Templo Sede e Sítio Espinheiro pelo campo 'dia'
     escalas_templo = Escala.objects.filter(congregacao='Templo Sede').order_by(
         'dia')
     escalas_sitio = Escala.objects.filter(congregacao='Sítio Espinheiro').order_by('dia')
@@ -17,6 +15,42 @@ def escala_list(request):
         'escalas_templo': escalas_templo,
         'escalas_sitio': escalas_sitio,
     })
+
+
+
+
+def contate_nos(request):
+    form = ContatoForm(request.POST or None)
+    mensagem_sucesso = False
+
+    if request.method == 'POST' and form.is_valid():
+        # Salvar os dados no banco
+        MensagemContato.objects.create(
+            nome=form.cleaned_data['nome'],
+            email=form.cleaned_data['email'],
+            mensagem=form.cleaned_data['mensagem']
+        )
+        mensagem_sucesso = True
+        form = ContatoForm()  # Recria o formulário vazio após o envio bem-sucedido
+
+    contexto = {
+        'form': form,
+        'mensagem_sucesso': mensagem_sucesso,
+    }
+
+    return render(request, 'adrodolfo/contate_nos.html', contexto)
+
+
+
+def novo_templo(request):
+    return render(request, 'adrodolfo/novo_templo.html')
+
+def historia(request):
+    return render(request, 'adrodolfo/historia.html')
+
+def obra_missionaria(request):
+    return render(request, 'adrodolfo/obra_missionaria.html')
+
 
 @login_required
 # View para criar programação da escala
@@ -51,14 +85,3 @@ def escala_delete(request, id):
     return render(request, 'adrodolfo/escala_confirm_delete.html', {'escala': escala})
 
 
-def novo_templo(request):
-    return render(request, 'adrodolfo/novo_templo.html')
-
-def historia(request):
-    return render(request, 'adrodolfo/historia.html')
-
-def obra_missionaria(request):
-    return render(request, 'adrodolfo/obra_missionaria.html')
-
-def contate_nos(request):
-    return render(request, 'adrodolfo/contate_nos.html')
