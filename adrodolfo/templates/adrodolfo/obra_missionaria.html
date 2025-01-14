@@ -1,2 +1,71 @@
 {% extends "base.html" %}
+{%load static%}
 {% block title %}Obra Missionária{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/missoes.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/missoes.css' %}">
+<section>
+    <div class="container">
+        <div>
+            <p style="color: f1F4864;">A obra missionária é um cumprimento ao IDE do Senhor (Marcos 16:15). 
+                Na Igreja Evangélica Assembleia de Deus em Rodolfo Fernandes temos o Departamento de Missões e Evangelismo, que cria estratégias envolvendo toda a igreja para o cumprimento do IDE.</p>
+        </div>
+    </div>
+</section>
+<section class="obra-missionaria">
+
+    <div class="container1" style="min-height: 500px;">
+        <img src="{%static 'image/logopb.png'%}" alt="">
+
+    </div>
+
+</section>
+<section class="missao-evangelismo">
+    <p style="color: f1F4864;">
+        A Igreja não foi feita para estar apenas dentro de quatro paredes, mas para propagar a mensagem do
+        evangelho pelas ruas em todo o mundo. O departamento de missões e evangelismo intermedia isso. Através
+        do evangelismo, dos cultos ao ar livre, seja na casa dos irmãos, ou em qualquer outro lugar, e através
+        do culto de missões (O qual nos relembra a importância do evangelho e do IDE).
+    </p>
+
+
+    <div class="galeria-imagens">
+        <div class="foto">
+            <img src="{% static 'image/culto.png' %}" alt="Imagem 1">
+        </div>
+        <div class="foto">
+            <img src="{% static 'image/igreja.png' %}" alt="Imagem 2">
+        </div>
+    </div>
+
+    <p style="color: f1F4864;">
+        No culto de missões, além de relembrarmos o IDE, também contribuímos com uma oferta missionária para aqueles
+        missionários que fazem missão transcultural. Ou seja, aqueles irmãos que foram enviados pela IAEDERN para pregar
+        o evangelho a outras nações. Uma obra tão importante quanto a missão local, que é a que fazemos aqui na cidade.
+    </p>
+    <h2>“Amarás o teu próximo como a ti mesmo.” Mt 22:39</h2>
+
+</section>
+
+<section class="acao-social">
+    <div class="container2" style="display: inline;">
+        <h2> Ação Social</h2>
+        <p style="width: 50%;margin: auto;">Todo 2° domingo do mês, no culto de Santa Ceia, arrecadamos alimentos, doados pelos próprios irmãos da
+            igreja.
+            Esses alimentos são usados para fazer cestas básicas, que são doadas para pessoas carentes.</p>
+        <div>
+            <img src="{%static 'image/quilo.png'%}" alt="">
+        </div>
+        <h6 style="margin-top: 15px;">Quer doar? Contate-nos</h6>
+
+    </div>
+
+
+</section>
+
+{% endblock %}

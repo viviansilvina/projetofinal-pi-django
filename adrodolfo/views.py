@@ -36,9 +36,9 @@ def index(request):
         "Jeremias 29:11": "Porque eu sei os pensamentos que penso de vós, diz o Senhor; pensamentos de paz, e não de mal, para vos dar o fim que desejais.",
         "Provérbios 3:5-6": "Confia no Senhor de todo o teu coração e não te estribes no teu próprio entendimento. Reconhece-o em todos os teus caminhos, e ele endireitará as tuas veredas.",
     }
-
-    referencia_versiculo = random.choice(list(versiculos.keys()))
-    versiculo = versiculos[referencia_versiculo]
+    #chave esta que é acessada lá na linha posterior, que é chamada e pega o versiculo específico
+    referencia_versiculo = random.choice(list(versiculos.keys())) #para cada versiculo, que por sua vez possui sua referencia, é criada uma chavezinha que é randomizada
+    versiculo = versiculos[referencia_versiculo] #essa chavezinha é usada aqui para acessar o dicionario e pegar o versiculo especifico
 
     contexto = {
         "referencia_versiculo": referencia_versiculo,
@@ -56,26 +56,6 @@ def escala_list(request):
         'escalas_sitio': escalas_sitio,
     })
 
-
-
-def mensagens_view(request):
-    # Filtro de busca
-    search_query = request.GET.get('search', '')
-    if search_query:
-        mensagens = MensagemContato.objects.filter(nome__icontains=search_query) | MensagemContato.objects.filter(email__icontains=search_query)
-    else:
-        mensagens = MensagemContato.objects.all()
-
-    # Paginação
-    paginator = Paginator(mensagens, 5)  # 5 mensagens por página
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-
-    contexto = {
-        'mensagens': page_obj,
-        'search_query': search_query,
-    }
-    return render(request, 'adrodolfo/mensagens.html', contexto)
 
 
 def contate_nos(request):
@@ -99,10 +79,6 @@ def contate_nos(request):
 
     return render(request, 'adrodolfo/contate_nos.html', contexto)
 
-
-
-def novo_templo(request):
-    return render(request, 'adrodolfo/novo_templo.html')
 
 def historia(request):
     return render(request, 'adrodolfo/historia.html')
@@ -144,3 +120,21 @@ def escala_delete(request, id):
     return render(request, 'adrodolfo/escala_confirm_delete.html', {'escala': escala})
 
 
+def mensagens_view(request):
+    # Filtro de busca
+    search_query = request.GET.get('search', '')
+    if search_query:
+        mensagens = MensagemContato.objects.filter(nome__icontains=search_query) | MensagemContato.objects.filter(email__icontains=search_query)
+    else:
+        mensagens = MensagemContato.objects.all()
+
+    # Paginação
+    paginator = Paginator(mensagens, 5)  # 5 mensagens por página
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    contexto = {
+        'mensagens': page_obj,
+        'search_query': search_query,
+    }
+    return render(request, 'adrodolfo/mensagens.html', contexto)

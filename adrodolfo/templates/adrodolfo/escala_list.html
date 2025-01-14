@@ -1,5 +1,9 @@
 {% extends "base.html" %}
+{%load static%}
 {% block title %}Escala Semanal{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/escala.css' %}">
+{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -17,7 +21,7 @@
     <div class="row mb-5">
         {% for escala in escalas_templo %}
         <div class="col-md-4 mb-3">
-            <div class="card">
+            <div class="card" style="border: none;">
                 <div class="card-body" id="escala">
                     <h5 class="card-title" id="title-escala">{{ escala.programacao }}</h5>
                     <p class="card-text" id="text-escala">{{ escala.dia }} - {{ escala.horario|time:"H:i" }}</p>
