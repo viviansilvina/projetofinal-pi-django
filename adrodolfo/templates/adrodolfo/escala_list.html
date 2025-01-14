@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="container">
-    <h1 class="text-center my-4">Escala Semanal</h1>
+    <h1 class="text-center my-4" style="color: #1F4864;">Escala Semanal</h1>
 
     {% if user.is_staff %}
     <!-- Botão para Adicionar Escala -->
@@ -13,14 +13,14 @@
     {% endif %}
 
     <!-- Listagem do Templo Sede -->
-    <h2 class="text-center">Templo Sede</h2>
+    <h2 class="text-center" style="margin-bottom: 5%; color: #1F4864;" >Templo Sede</h2>
     <div class="row mb-5">
         {% for escala in escalas_templo %}
         <div class="col-md-4 mb-3">
             <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">{{ escala.programacao }}</h5>
-                    <p class="card-text">{{ escala.dia }} - {{ escala.horario|time:"H:i" }}</p>
+                <div class="card-body" id="escala">
+                    <h5 class="card-title" id="title-escala">{{ escala.programacao }}</h5>
+                    <p class="card-text" id="text-escala">{{ escala.dia }} - {{ escala.horario|time:"H:i" }}</p>
                     {% if user.is_staff %}
                         <a href="{% url 'escala_update' escala.id %}" class="btn btn-warning btn-sm">Editar</a>
                         <a href="{% url 'escala_delete' escala.id %}" class="btn btn-danger btn-sm">Excluir</a>
@@ -32,15 +32,15 @@
     </div>
 
     <!-- Listagem da Congregação Sítio Espinheiro -->
-    <h2 class="text-center">Congregação Sítio Espinheiro</h2>
+    <h2 class="text-center" style="margin-bottom: 5%; color: #1F4864;">Congregação Sítio Espinheiro</h2>
     <div class="row">
         {% for escala in escalas_sitio %}
         <div class="col-md-4 mb-3">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">{{ escala.programacao }}</h5>
-                    <p class="card-text">{{ escala.dia }} - {{ escala.horario|time:"H:i" }}</p>
-                    {% if user.is_superuser %}
+            <div class="card" style="border: none;">
+                <div class="card-body" id="escala">
+                    <h5 class="card-title" id="title-escala">{{ escala.programacao }}</h5>
+                    <p class="card-text" id="text-escala">{{ escala.dia }} - {{ escala.horario|time:"H:i" }}</p>
+                    {% if user.is_staff %}
                         <a href="{% url 'escala_update' escala.id %}" class="btn btn-warning btn-sm">Editar</a>
                         <a href="{% url 'escala_delete' escala.id %}" class="btn btn-danger btn-sm">Excluir</a>
                     {% endif %}

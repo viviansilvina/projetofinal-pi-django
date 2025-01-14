@@ -1,15 +1,55 @@
+import random
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.decorators import login_required
 from .models import Escala, MensagemContato
 from .forms import EscalaForm, ContatoForm
+from django.contrib import messages
+from .forms import RegistrationForm
+from django.contrib.auth import logout
+from django.core.paginator import Paginator
+from .models import MensagemContato
+
+
+def register(request):
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            user.is_staff = True  
+            user.is_superuser = False  
+            user.save()
+            return redirect('login')
+    else:
+        form = RegistrationForm()
+    return render(request, 'registration/register.html', {'form': form})
+
+
+def logout_view(request):
+    logout(request)  
+    return redirect('login')  
 
 def index(request):
-    return render(request, 'adrodolfo/index.html')
+    versiculos = {
+        "João 3:16": "Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito, para que todo aquele que nele crê não pereça, mas tenha a vida eterna.",
+        "Salmos 23:1": "O Senhor é o meu pastor; nada me faltará.",
+        "Filipenses 4:13": "Tudo posso naquele que me fortalece.",
+        "Jeremias 29:11": "Porque eu sei os pensamentos que penso de vós, diz o Senhor; pensamentos de paz, e não de mal, para vos dar o fim que desejais.",
+        "Provérbios 3:5-6": "Confia no Senhor de todo o teu coração e não te estribes no teu próprio entendimento. Reconhece-o em todos os teus caminhos, e ele endireitará as tuas veredas.",
+    }
+
+    referencia_versiculo = random.choice(list(versiculos.keys()))
+    versiculo = versiculos[referencia_versiculo]
+
+    contexto = {
+        "referencia_versiculo": referencia_versiculo,
+        "versiculo": versiculo,
+    }
+    return render(request, 'adrodolfo/index.html', contexto)
 
 def escala_list(request):
     escalas_templo = Escala.objects.filter(congregacao='Templo Sede').order_by(
-        'dia')
-    escalas_sitio = Escala.objects.filter(congregacao='Sítio Espinheiro').order_by('dia')
+        'dia', 'horario')
+    escalas_sitio = Escala.objects.filter(congregacao='Sítio Espinheiro').order_by('dia', 'horario')
 
     return render(request, 'adrodolfo/escala_list.html', {
         'escalas_templo': escalas_templo,
@@ -17,6 +57,25 @@ def escala_list(request):
     })
 
 
+
+def mensagens_view(request):
+    # Filtro de busca
+    search_query = request.GET.get('search', '')
+    if search_query:
+        mensagens = MensagemContato.objects.filter(nome__icontains=search_query) | MensagemContato.objects.filter(email__icontains=search_query)
+    else:
+        mensagens = MensagemContato.objects.all()
+
+    # Paginação
+    paginator = Paginator(mensagens, 5)  # 5 mensagens por página
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    contexto = {
+        'mensagens': page_obj,
+        'search_query': search_query,
+    }
+    return render(request, 'adrodolfo/mensagens.html', contexto)
 
 
 def contate_nos(request):

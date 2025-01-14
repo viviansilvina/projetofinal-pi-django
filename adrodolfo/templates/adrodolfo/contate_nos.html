@@ -34,7 +34,11 @@
     </form>
 </section>
 
-
+{% if user.is_authenticated %}
+    <div style="display: flex; justify-content: center; align-items: center; padding: 20px;">
+        <a href="{% url 'mensagens' %}" style="color: #1F4864; text-decoration: none; font-size: 1.2rem;">Ver mensagens</a>
+    </div>
+{% endif %}
 
 
 <!-- Redes sociais -->
@@ -45,4 +49,6 @@
         <img src="{% static 'image/face.png' %}" alt="Facebook">
     </div>
 </section>
+
+
 {% endblock %}

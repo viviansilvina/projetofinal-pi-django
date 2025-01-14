@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block title %}Mensagens{% endblock %}
+
+{% block content %}
+
+<style>
+    .mensagens-container {
+        margin: 20px;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .mensagem {
+        padding: 15px;
+        margin-bottom: 15px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .mensagem p {
+        font-size: 1rem;
+        color: #333;
+        margin: 5px 0;
+    }
+
+    .mensagem p strong {
+        color: #1F4864;
+    }
+
+    .mensagens-container .mensagem:last-child {
+        margin-bottom: 0;
+    }
+
+    .search-box {
+        margin: 20px;
+        text-align: center;
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30px;
+    }
+</style>
+
+<h1 style="color: #1F4864; text-align: center; padding: 0;">Mensagens recebidas</h1>
+
+<!-- Filtro de busca -->
+<div class="search-box">
+    <form method="get">
+        <input type="text" name="search" placeholder="Buscar por nome ou email" value="{{ search_query }}">
+        <button type="submit">Buscar</button>
+    </form>
+</div>
+
+<!-- Exibir as mensagens -->
+<div class="mensagens-container">
+    {% for mensagem in mensagens %}
+    <div class="mensagem">
+        <p><strong>Nome:</strong> {{ mensagem.nome }}</p>
+        <p><strong>E-mail:</strong> {{ mensagem.email }}</p>
+        <p><strong>Mensagem:</strong> {{ mensagem.mensagem }}</p>
+    </div>
+    {% empty %}
+    <p style="text-align: center; color: #888;">Nenhuma mensagem encontrada.</p>
+    {% endfor %}
+</div>
+
+<!-- Paginação -->
+<div class="pagination" style="text-align: center;">
+    <span class="step-links">
+        {% if mensagens.has_previous %}
+        <a href="?page=1&search={{ search_query }}">Primeira</a>
+        <a href="?page={{ mensagens.previous_page_number }}&search={{ search_query }}">Anterior</a>
+        {% endif %}
+
+        <span class="current">
+            Página {{ mensagens.number }} de {{ mensagens.paginator.num_pages }}.
+        </span>
+
+        {% if mensagens.has_next %}
+        <a href="?page={{ mensagens.next_page_number }}&search={{ search_query }}" style="margin: 0 15px;">Próxima</a>
+        <a href="?page={{ mensagens.paginator.num_pages }}&search={{ search_query }}" style="margin: 0 15px;">Última</a>
+        {% endif %}
+    </span>
+</div>
+
+{% endblock %}

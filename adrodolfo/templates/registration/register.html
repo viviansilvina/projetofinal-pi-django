@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}Registrar-se{% endblock %}
+{% load static %}
+
+{% block content %}
+<!-- Formulário de Registro -->
+<section class="formulario">
+    <h2>Crie sua Conta</h2>
+
+    <!-- Exibir erros de validação -->
+    {% if messages %}
+        {% for message in messages %}
+            <p style="color: red;">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+    <!-- Formulário -->
+    <form method="POST">
+        {% csrf_token %}
+        
+        <!-- Nome -->
+        <div>
+            <input type="text" name="username" placeholder="Nome" value="{{ form.username.value|default:'' }}" required>
+            {% if form.username.errors %}
+            <ul style="display: inline-block; text-align: center; list-style: none; padding: 0;">
+                {% for error in form.username.errors %}
+                        <li style="color: red;">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+
+        <!-- E-mail -->
+        <div>
+            <input type="email" name="email" placeholder="E-mail" value="{{ form.email.value|default:'' }}" required>
+            {% if form.email.errors %}
+            <ul style="display: inline-block; text-align: center; list-style: none; padding: 0;">
+                {% for error in form.email.errors %}
+                        <li style="color: red;">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+
+        <!-- Senha -->
+        <div>
+            <input type="password" name="password1" placeholder="Senha" required>
+            {% if form.password1.errors %}
+            <ul style="display: inline-block; text-align: center; list-style: none; padding: 0;">
+                {% for error in form.password1.errors %}
+                        <li style="color: red;">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+
+        <!-- Confirmação de Senha -->
+        <div>
+            <input type="password" name="password2" placeholder="Confirme a Senha" required>
+            {% if form.password2.errors %}
+            <ul style="display: inline-block; text-align: center; list-style: none; padding: 0;">
+                {% for error in form.password2.errors %}
+                        <li style="color: red;">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+
+        <button type="submit">REGISTRAR</button>
+    </form>
+    <p style="margin-top: 1rem;">Já tem uma conta? 
+        <a href="{% url 'login' %}" style="color: blue; text-decoration: underline;">Logar</a>
+    </p>
+    
+</section>
+{% endblock %}

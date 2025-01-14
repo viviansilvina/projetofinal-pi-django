@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="formulario" style="text-align: center;">
+    <h2>Login</h2>
+
+    <!-- Exibir erros gerais do formulário -->
+    {% if form.non_field_errors %}
+        <ul style="display: inline-block; text-align: center; list-style: none; padding: 0;">
+            {% for error in form.non_field_errors %}
+                <li style="color: red;">{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <!-- Formulário de Login -->
+    <form method="post">
+        {% csrf_token %}
+        
+        <!-- Nome de usuário -->
+        <div>
+            <input type="text" name="username" placeholder="Nome de Usuário" value="{{ form.username.value|default:'' }}" required>
+            {% if form.username.errors %}
+                <ul style="display: inline-block; text-align: center; list-style: none; padding: 0;">
+                    {% for error in form.username.errors %}
+                        <li style="color: red;">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+
+        <!-- Senha -->
+        <div>
+            <input type="password" name="password" placeholder="Senha" required>
+            {% if form.password.errors %}
+                <ul style="display: inline-block; text-align: center; list-style: none; padding: 0;">
+                    {% for error in form.password.errors %}
+                        <li style="color: red;">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+
+        <button type="submit">Entrar</button>
+    </form>
+
+    <!-- Link para página de registro -->
+    <p style="margin-top: 1rem;">Ainda não tem uma conta? 
+        <a href="{% url 'register' %}" style="color: blue; text-decoration: underline;">Registrar-se</a>
+    </p>
+</section>
+{% endblock %}

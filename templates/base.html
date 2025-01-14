@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/escala.css' %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <title>{% block title %}{% endblock %}</title>
 </head>
@@ -22,9 +23,6 @@
         justify-content: center;
     }
 
-    .navbar-brand {
-        margin-right: 100px;
-    }
 
     .navbar-collapse {
         flex-grow: 0;
@@ -51,7 +49,7 @@
         width: 15vh;
     }
 
-    .nav-link{
+    .nav-link {
         color: #1F4864 !important;
         font-size: 1.2rem;
     }
@@ -112,7 +110,17 @@
                         <a class="nav-link" href="{% url 'contate_nos' %}">Contate-nos</a>
                     </li>
                 </ul>
+                
             </div>
+            {% if user.is_authenticated %}
+                <button class="nav-item" style="margin-left: 3%;">
+                    <a class="nav-link" href="{% url 'logout' %}">Sair</a>
+                </button>
+                {% else %}
+                <button class="nav-item" style="margin-left: 1%;">
+                    <a class="nav-link" href="{% url 'login' %}">Entrar</a>
+                </button>
+                {% endif %}
         </nav>
     </header>
     <main>
